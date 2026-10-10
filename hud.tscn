@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://ug1n37amg264"]
+
+[ext_resource type="Script" uid="uid://ddfvpd7nwyas1" path="res://hud.gd" id="1_64ctp"]
+[ext_resource type="FontFile" uid="uid://d22fins34r6ph" path="res://fonts/Xolonium-Regular.ttf" id="2_8sq4i"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_kek77"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_272bh"]
+events = [SubResource("InputEventAction_kek77")]
+
+[node name="HUD" type="CanvasLayer" unique_id=1722429271]
+script = ExtResource("1_64ctp")
+
+[node name="MessageTimer" type="Timer" parent="." unique_id=681100551]
+wait_time = 2.0
+one_shot = true
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=120641058]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.0
+offset_right = 92.0
+offset_bottom = 159.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_8sq4i")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="Label" parent="." unique_id=1599775135]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -120.0
+offset_right = 240.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_8sq4i")
+theme_override_font_sizes/font_size = 64
+text = "Dodge the Creeps!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StartButton" type="Button" parent="." unique_id=337694756]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -140.0
+offset_right = 100.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_8sq4i")
+theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_272bh")
+text = "Start"
+
+[node name="LivesLabel" type="Label" parent="." unique_id=504643636]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 78.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("2_8sq4i")
+theme_override_font_sizes/font_size = 48
+text = "Lives: 3"
+
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
